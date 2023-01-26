@@ -9,11 +9,30 @@
 {% block content %}
      <div class="container mt-5 bg-light p-5 border">
         <h1 class="mb-3">{{ plemeno.nazev }}</h1>
-         <p><span class="flag-icon flag-icon-svk"></span><span> {{ plemeno.sk_nazev }}</span></p>
-         <p><span class="flag-icon flag-icon-deu"></span><span> {{ plemeno.de_nazev }}</span></p>
-         <p><span class="flag-icon flag-icon-gbr"></span><span> {{ plemeno.uk_nazev }}</span></p>
+         <section class="pt-3"  >
+            <p><span class="flag-icon flag-icon-svk"></span><span> {{ plemeno.sk_nazev }}</span></p>
+            <p><span class="flag-icon flag-icon-deu"></span><span> {{ plemeno.de_nazev }}</span></p>
+            <p><span class="flag-icon flag-icon-gbr"></span><span> {{ plemeno.uk_nazev }}</span></p>
+         </section>
+         <section class="pt-3">
+             <p><strong>Skupina: </strong>{{ plemeno.skupina_r.nazev }}</p>
+             <p><strong>Velikost: </strong>{{ plemeno.velikost_r.nazev }}</p>
+             <p><strong>Místo původu: </strong>{{ plemeno.misto_puvodu_r.nazev }}</p>
+             <p><strong>Číslo kroužku: </strong>{{ plemeno.krouzek}}</p>
+         </section>
         <h3 class="pt-3">Stručný popis</h3>
         <p>{{ plemeno.strucny_popis }}</p>
+
+        <hr>
+        <h3 class="pt-3">Barevné rázy</h3>
+            {% for raz in razy %}
+                <p><span><strong>{{ raz[0] }}: </strong></span></p>
+                <ul>
+                    {% for kresba in raz[1] %}
+                        <li>{{ kresba }}</li>
+                    {% endfor %}
+                </ul>
+            {% endfor %}
      </div>
 
 

@@ -14,22 +14,32 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://test:testovaci@localhost:5
 db = SQLAlchemy(app)
 
 
+
 @app.route('/')
 def index():
+    return render_template('index.html')
+
+
+@app.route('/plemena')
+def seznam_plemen():
     plemena = db.session.query(Plemeno).all()
-    return render_template('index.html', plemena=plemena)
+    return render_template('seznam_plemen.html', plemena=plemena)
 
 
 @app.route('/grafy/pocty-skupiny')
 def graph_count_groups():
-    subquery = (db.select(
-            Skupina.nazev.label("nazev"),
-            func.count(Plemeno.id_ple).label("pocet"),
-        ).join(Plemeno.skupina_r).group_by(Plemeno.skupina, Skupina.nazev)).subquery()
-
+    # subquery = (db.select(
+    #         Skupina.nazev.label("nazev"),
+    #         func.count(Plemeno.id_ple).label("pocet"),
+    #     ).join(Plemeno.skupina_r).group_by(Plemeno.skupina, Skupina.nazev)).subquery()
+    #
+    # result = db.session.execute(db.select(
+    #     subquery.c.nazev, subquery.c.pocet, func.rank().over(order_by=desc(text("pocet")))
+    # )).all()
     result = db.session.execute(db.select(
-        subquery.c.nazev, subquery.c.pocet, func.rank().over(order_by=desc(text("pocet")))
-    )).all()
+        Skupina.nazev.label("nazev"),
+        func.count(Plemeno.id_ple).label("pocet"),
+    ).join(Plemeno.skupina_r).group_by(Plemeno.skupina, Skupina.nazev).order_by(desc(text("pocet")))).all()
 
     labels = []
     values = []
@@ -41,13 +51,16 @@ def graph_count_groups():
 @app.route("/plemena/<int:id_ple>")
 def plemeno_detail(id_ple):
     plemeno = db.session.query(Plemeno).filter(Plemeno.id_ple==id_ple).one()
-    return render_template("detail_plemene.html", plemeno=plemeno)
+    razy = db.session.execute(
+        db.select(Barva.nazev, func.array_agg(Kresba.nazev)).filter(Plemeno.id_ple == id_ple).join(Plemeno.razy).join(
+            BarevnyRaz.barva).join(BarevnyRaz.kresba).group_by(Barva.nazev)).all()
+    return render_template("detail_plemene.html", plemeno=plemeno, razy=razy)
 
 
 @app.route('/test')
 def test():
-    result = db.session.execute(db.select(func.count(Plemeno.id_ple), Skupina.nazev).join(Skupina).group_by(Plemeno.skupina, Skupina.nazev)).all()
-    return jsonify(str(result))
+    result = db.session.execute(db.select(Barva.nazev, func.array_agg(Kresba.nazev)).filter(Plemeno.id_ple==9).join(Plemeno.razy).join(BarevnyRaz.barva).join(BarevnyRaz.kresba).group_by(Barva.nazev)).all()
+    return (str(result))
 
 
 if __name__ == '__main__':

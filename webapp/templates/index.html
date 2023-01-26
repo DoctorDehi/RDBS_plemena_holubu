@@ -1,31 +1,20 @@
-{% extends 'base.html' %}
-
-
-{% block title %}- Plemena holubů{% endblock %}
+{% extends "base.html" %}
+{% block title %}- Rozcestník{% endblock %}
 
 {% block content %}
-    <h1>Plemena holubů</h1>
-
-    <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Název</th>
-      <th scope="col">Skupina</th>
-      <th scope="col">Velikost</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for plemeno in plemena %}
-        <tr>
-            <th scope="row">{{ plemeno.id_ple }}</th>
-            <td><a href="{{ url_for('plemeno_detail', id_ple=plemeno.id_ple) }}">{{ plemeno.nazev }}</a></td>
-            <td>{{ plemeno.skupina_r.nazev }}</td>
-            <td>{{ plemeno.velikost_r.nazev }}</td>
-        </tr>
-    {% endfor %}
-  </tbody>
-</table>
-
-
+    <div class="container mt-5 bg-light p-5 border">
+        <h1 class="mb-3">Rozcestník</h1>
+        <section class="pt-3">
+            <h2>Plemena</h2>
+            <ul>
+                <li><a href="{{ url_for('seznam_plemen') }}">Seznam plemen</a></li>
+            </ul>
+        </section>
+        <section class="pt-3">
+            <h2>Grafy</h2>
+            <ul>
+                <li><a href="{{ url_for('graph_count_groups') }}">Počty plemen ve skupinách</a></li>
+            </ul>
+        </section>
+    </div>
 {% endblock %}

@@ -89,3 +89,6 @@ class BarevnyRaz(Base):
     id_raz = Column(Integer, primary_key=True)
     bar = Column(Integer, ForeignKey("barvy.id_bar"), nullable=False)
     kre = Column(Integer, ForeignKey("kresby.id_kre"), nullable=False)
+
+    barva = relationship("Barva")
+    kresba = relationship("Kresba")
