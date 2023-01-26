@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+
+{% block title %}- Plemena holubů{% endblock %}
+
+{% block content %}
+    <h1>Plemena holubů</h1>
+
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Název</th>
+      <th scope="col">Skupina</th>
+      <th scope="col">Velikost</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for plemeno in plemena %}
+        <tr>
+            <th scope="row">{{ plemeno.id_ple }}</th>
+            <td><a href="{{ url_for('plemeno_detail', id_ple=plemeno.id_ple) }}">{{ plemeno.nazev }}</a></td>
+            <td>{{ plemeno.skupina_r.nazev }}</td>
+            <td>{{ plemeno.velikost_r.nazev }}</td>
+        </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+
+{% endblock %}
