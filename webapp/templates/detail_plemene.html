@@ -4,6 +4,7 @@
 
 {% block head %}
     <link rel="stylesheet" href="{{ url_for('static', filename='flag-icons-master/css/flag-icon.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/barvy.css') }}">
 {% endblock %}
 
 {% block content %}
@@ -26,7 +27,12 @@
         <hr>
         <h3 class="pt-3">Barevné rázy</h3>
             {% for raz in razy %}
-                <p><span><strong>{{ raz[0] }}: </strong></span></p>
+                <div class="d-flex">
+                    <div>
+                        <div class="color-circle"><div class="color-circle--inner {{ raz[2] }}"></div></div>
+                    </div>
+                    <p class="p-3"><strong>{{ raz[0] }}: </strong></p>
+                </div>
                 <ul>
                     {% for kresba in raz[1] %}
                         <li>{{ kresba }}</li>

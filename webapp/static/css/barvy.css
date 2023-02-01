@@ -1,0 +1,114 @@
+.color-circle {
+  height: 40px;
+  width: 40px;
+  background-color: #eeeeee;
+  border-radius: 50%;
+  border: 2px solid gray;
+}
+
+.color-circle--inner {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  border: 2px solid gray;
+  margin:3px;
+}
+
+
+.color--andaluzsti {
+    background-color: #dddddd;
+}
+.color--barvy-postovni-rady {
+    background-color: #666666;
+}
+.color--cervene-popelavi {
+    background-color: #8d1a16;
+}
+.color--zlute-popelavi {
+    background-color: #736d53;
+}
+.color--skrivanci {
+    background-color: #615d66;
+}
+.color--bili {
+    background-color: #ffffff;
+}
+.color--bili-belousi {
+    background-color: #cad2d1;
+}
+.color--cerni {
+    background-color: #000000;
+}
+.color--cervene-plavi {
+    background-color: #826869;
+}
+.color--cerveni {
+    background-color: #601e19;
+}
+.color--stribrite-cervene-popelavi {
+    background-color: #6c5f61;
+}
+.color--hermelini {
+    background-color: #a88576;
+}
+.color--hnede-plavi {
+    background-color: #685c26;
+}
+.color--hnedi {
+    background-color: #9f6600;
+}
+.color--hnedozluti {
+    background-color: #9d8a51;
+}
+.color--indigo {
+    background-color:#c1b7a7 ;
+}
+.color--izabelovi {
+    background-color: #debf67;
+}
+.color--kastanove-hnedi {
+    background-color: #791b00
+}
+.color--mandlovi {
+    background-color: #d4aa99;
+}
+.color--modre-plavi {
+    background-color: #b3bec0;
+}
+.color--modri {
+    background-color: #646981;
+}
+.color--modri-belousi {
+    background-color: #ced9df;
+}
+.color--popelave-sedi {
+    background-color: #8d8d8d;
+}
+.color--sedohnedi {
+    background-color: #403932;
+}
+.color--sivi {
+    background-color: #aebfc1;
+}
+.color--stribrite-plavi {
+    background-color: #a3a49f;
+}
+.color--stribriti {
+    background-color: #cfd1c4;
+}
+.color--stribrni {
+    background-color: #c5c8c4;
+}
+.color--svetle-modri {
+    background-color: #94a1ba;
+}
+.color--zlute-plavi {
+    background-color: #90897f;
+}
+.color--zluti {
+    background-color: #af8256;
+}
+.color--plavi {
+    background-color: #c0b9b3;
+}
+

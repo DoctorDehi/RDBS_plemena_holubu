@@ -6,7 +6,7 @@
 
 {% block content %}
     <div class="container mt-5 bg-light p-5 border">
-    <h1>Počty plemen ve skupinách</h1>
+    <h1>{{ title }}</h1>
     <section>
         <canvas id="barChart" width="900" height="600"></canvas>
     </section>
@@ -14,7 +14,6 @@
 
 {% endblock %}
 {% block footer %}
-{#    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.2.0/chart.min.js" integrity="sha512-qKyIokLnyh6oSnWsc5h21uwMAQtljqMZZT17CIMXuCQNIfFSFF4tJdMOaJHL9fQdJUANid6OB6DRR0zdHrbWAw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>#}
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         let ctx = document.getElementById("barChart").getContext("2d");
@@ -24,7 +23,7 @@
                 labels: {{ labels | safe }},
                 datasets: [
                     {
-                        label: "Počet plemen ve skupině",
+                        label: "{{ label }}",
                         data: {{ values | safe }}
                     }
                 ]
