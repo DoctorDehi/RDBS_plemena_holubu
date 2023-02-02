@@ -3,7 +3,7 @@
 
 {% block content %}
     <div class="container mt-5 bg-light p-5 border">
-        <h1 class="mb-3">Rozcestník</h1>
+        <h1 class="mb-3">Databáze plemen holubů</h1>
         <section class="pt-3">
             <h2>Plemena</h2>
             <ul>
@@ -15,6 +15,7 @@
             <ul>
                 <li><a href="{{ url_for('graph_count_groups') }}">Počty plemen ve skupinách</a></li>
                 <li><a href="{{ url_for('graph_count_razy') }}">Počty barevných rázů plemen</a></li>
+                <li><a href="{{ url_for('graph_count_barvy_kresby') }}">Počty kreseb ku počtu barev, ve kterých se plemena vyskytují, dle vzorníku</a></li>
             </ul>
         </section>
     </div>

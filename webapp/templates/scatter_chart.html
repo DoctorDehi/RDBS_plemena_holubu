@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+{%  endblock %}
+
+{% block content %}
+    <div class="container mt-5 bg-light p-5 border">
+    <h1>{{ title }}</h1>
+    <section>
+        <canvas id="barChart" width="900" height="600"></canvas>
+    </section>
+    </div>
+
+{% endblock %}
+{% block footer %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        let ctx = document.getElementById("barChart").getContext("2d");
+        let barChart = new Chart(ctx, {
+            type: "scatter",
+            data: {
+                datasets: [
+                    {
+                        label: "{{ label }}",
+                        data: {{ values | safe }},
+                    }
+                ]
+            },
+            options: {
+                 scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Počet kreseb'
+                        }
+                    },
+                     y: {
+                        title: {
+                            display: true,
+                            text: 'Počet barev'
+                        }
+                    }
+                }
+            }
+
+        })
+    </script>
+{% endblock %}

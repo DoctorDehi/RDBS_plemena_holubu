@@ -11,9 +11,15 @@
      <div class="container mt-5 bg-light p-5 border">
         <h1 class="mb-3">{{ plemeno.nazev }}</h1>
          <section class="pt-3"  >
-            <p><span class="flag-icon flag-icon-svk"></span><span> {{ plemeno.sk_nazev }}</span></p>
-            <p><span class="flag-icon flag-icon-deu"></span><span> {{ plemeno.de_nazev }}</span></p>
-            <p><span class="flag-icon flag-icon-gbr"></span><span> {{ plemeno.uk_nazev }}</span></p>
+             {% if plemeno.sk_nazev %}
+                <p><span class="flag-icon flag-icon-svk"></span><span> {{ plemeno.sk_nazev }}</span></p>
+             {% endif %}
+            {% if plemeno.de_nazev %}
+                <p><span class="flag-icon flag-icon-deu"></span><span> {{ plemeno.de_nazev }}</span></p>
+            {% endif %}
+            {% if plemeno.uk_nazev %}
+                <p><span class="flag-icon flag-icon-gbr"></span><span> {{ plemeno.uk_nazev }}</span></p>
+            {% endif %}
          </section>
          <section class="pt-3">
              <p><strong>Skupina: </strong>{{ plemeno.skupina_r.nazev }}</p>

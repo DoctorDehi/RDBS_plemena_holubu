@@ -1,7 +1,7 @@
 import os
 from flask import Flask, render_template, jsonify
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import func, desc, text
+from sqlalchemy import func, desc, text, distinct
 from models import *
 
 
@@ -69,9 +69,26 @@ def graph_count_razy():
     title = "Počty barevných rázů, ve kterých se plemena vyskytují, dle vzorníku"
     return render_template('bar_chart.html', title=title, label=label, labels=labels, values=values)
 
-@app.route('/grafy/pocty-barvy-razy')
-def graph_count_barvy_razy():
-    result = ...
+@app.route('/grafy/pocty-barvy-kresby')
+def graph_count_barvy_kresby():
+    result = db.session.execute(db.select(
+        func.count(distinct(Kresba.id_kre)).label("pocet_kreseb"),
+        func.count(distinct(Barva.id_bar)).label("pocet_barev")
+    ).join(Plemeno.razy).join(BarevnyRaz.barva).join(BarevnyRaz.kresba).group_by(Plemeno.nazev)).all()
+
+
+    values = []
+    for i in result:
+        values.append(
+            {
+                'x':i[0],
+                'y':i[1]
+            }
+        )
+
+    label = "Počet kreseb ku počtu barev"
+    title = "Počty kreseb ku počtu barev, ve kterých se plemena vyskytují, dle vzorníku"
+    return render_template('scatter_chart.html', title=title, label=label, values=values)
 
 
 @app.route('/test')
