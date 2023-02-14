@@ -15,6 +15,7 @@ FROM tbl
 ORDER BY rows_n DESC;
 
 
+
 -- vnořený select
 -- průměrný počet barevných rázů skupiny
 SELECT s.nazev, AVG(pocet_razu) 
@@ -215,7 +216,7 @@ $$
 LANGUAGE PLPGSQL;
 
 
-CALL choose_breeds(3, 40);
+CALL choose_breeds(4, 20);
 
 
 
